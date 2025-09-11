@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BEINGMUSLIMS — Store Branches</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#4b2e2e;
+      --card:#5e3b3b;
+      --muted:#f3e6e6;
+      --accent:#ffd28a;
+      --glass: rgba(255,255,255,0.06);
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    body{
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+      margin:0;
+      background: var(--bg);
+      color:#ffffff;
+      -webkit-font-smoothing:antialiased;
+      background-image: radial-gradient(circle at 10% 10%, rgba(255,210,138,0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(255,210,138,0.05) 0%, transparent 50%),
+                        url('https://www.transparenttextures.com/patterns/arabesque.png');
+      background-size: cover, cover, 400px;
+      background-repeat: no-repeat, no-repeat, repeat;
+      background-blend-mode: overlay;
+      opacity: 0.98;
+    }
+    .container{max-width:1100px;margin:36px auto;padding:20px;background:rgba(0,0,0,0.35);border-radius:16px;backdrop-filter:blur(6px)}
+
+    header{display:flex;align-items:center;gap:18px}
+    .brand{display:flex;flex-direction:column}
+    .brand h1{margin:0;font-size:22px;letter-spacing:1px;color:#fff;font-weight:700}
+    .brand p{margin:2px 0 0;font-size:12px;color:var(--muted)}
+
+    .city-section{margin-top:32px}
+    .city-title{font-size:20px;font-weight:700;color:var(--accent);margin:10px 0 16px;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:6px;display:flex;align-items:center;gap:10px}
+    .badge-new{font-size:11px;padding:4px 8px;border-radius:6px;background:var(--accent);color:#4b2e2e;font-weight:700}
+
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    @media (max-width:880px){.grid{grid-template-columns:1fr}}
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;gap:8px;box-shadow:0 4px 14px rgba(0,0,0,0.3);position:relative;overflow:hidden;transition:all 0.3s ease}
+    .card:hover{box-shadow:0 0 20px rgba(255,210,138,0.5)}
+    .card:before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg, transparent, var(--accent), transparent)}
+    .card .address{font-size:14px;color:#fff;line-height:1.6;white-space:pre-line}
+    .card .meta{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    .chip{background:rgba(255,255,255,0.08);padding:8px 10px;border-radius:10px;font-size:13px;border:1px solid rgba(255,255,255,0.15);color:#fff}
+    .actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+    a.phone{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);text-decoration:none;color:#fff;background:rgba(255,255,255,0.06);transition:0.3s}
+    a.phone:hover{background:rgba(255,255,255,0.15)}
+    a.map{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;border:1px dashed rgba(255,255,255,0.2);text-decoration:none;color:#ffd28a;font-size:13px;transition:0.3s}
+    a.map:hover{border-color:var(--accent);color:#fff}
+
+    footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="https://cdn.shopify.com/s/files/1/0617/3255/2841/files/bm_logo.png?v=1757573120" alt="BM Logo" style="height:64px;width:auto;border-radius:50%;background:#fff;padding:6px;box-shadow:0 0 12px rgba(255,210,138,0.5)">
+      <div class="brand">
+        <h1>BEINGMUSLIMS — The Hijab Shoppe</h1>
+        <p>Mumbai • Delhi • Surat • Pune • Hyderabad • Ahmedabad • Aurangabad • Lucknow • Belgaum</p>
+      </div>
+    </header>
+
+    <div id="branchesArea"></div>
+
+    <footer>
+      <div>Need changes (logo, extra fields, or different layout)? Reply and I'll update the page.</div>
+    </footer>
+  </div>
+
+  <script>
+    const branches = {
+      'MUMBAI':[ 
+        {title:'Ground Floor, 30, Next to Al Sadiq ENT Hospital, Opposite Chuna Bhatti Masjid, Mumbai, Maharashtra', phone:'8928805501'},
+        {title:'1/14, Ground Floor, Development Bank Building, Mata Ramabai Ambedkar Marg, Mumbai, Maharashtra', phone:'8433991785'},
+        {title:'Ground Floor, Habib House, 97 Memomwada Street, Behind Noor Hospital, Mumbai, Maharashtra', phone:'9799796993'}],
+      'DELHI':[ 
+        {title:'Shop Number 3941, Urdu Bazar Road, Jama Masjid, Old Delhi, Delhi, 110006', phone:'9625545424'},
+        {title:'Shop no-161/22, Main Market Joga Bai, Makkah Palace Hotel, Batla House, Okhla, New Delhi -110025', phone:'9891269822'}],
+      'SURAT':[ 
+        {title:'Salabatpura Mumnawad, Near Badi Masjid, Opp. Dusra Taziya, Surat, Gujarat 395003', phone:'7600267402'},
+        {title:'Chowk Bazar, Kamal Gali, Main Road, Opp. Jama Masjid, Surat, Gujarat 395003', phone:'7600267402'}],
+      'PUNE':[ 
+        {title:'370, Centre Street, Opp. Kalidas Gandhi, Near Kolsa Galli, Camp, Pune, Maharashtra 411001', phone:'9823393733'}],
+      'BELGAUM':[ 
+        {title:'Shop No. Hyderabad Collection, 3306, Bhendi Bazar, Raviwar Peth, Belagavi, Karnataka 590001'}],
+      'AHMEDABAD':[ 
+        {title:'3 Darwaza, Near Khajuri Masjid, Dhalgarwad, Ahmedabad, Gujarat 380001'}],
+      'HYDERABAD':[ 
+        {title:'20-4-231, Mahboob Chowk, Khilwat, Hyderabad, Telangana 500002', newOutlet:true}],
+      'AURANGABAD':[ 
+        {title:'Shop No. 2, Hafeez Tower, Opposite Masjid E Kalaha Shahgunj, Near Clock Tower, Shahgunj, Chhatrapati Sambhajinagar (Aurangabad), Maharashtra 431001', newOutlet:true}],
+      'LUCKNOW':[ 
+        {title:'Shop No. 178, Victoria Street, Opposite Shia Girls College, Bajaja Nakhas Chowk, Lucknow, Uttar Pradesh 226003', newOutlet:true}]
+    };
+
+    function mkMapUrl(addr){
+      return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(addr);
+    }
+
+    function render(){
+      const area = document.getElementById('branchesArea');
+      area.innerHTML='';
+      for(const city in branches){
+        const sec = document.createElement('section');
+        sec.className='city-section';
+        const h = document.createElement('h2');
+        h.className='city-title';
+        const firstOutlet = branches[city].find(b=>b.newOutlet);
+        h.innerHTML = city + (firstOutlet? ' <span class="badge-new">NEW OUTLET</span>':'');
+        sec.appendChild(h);
+        const grid = document.createElement('div');
+        grid.className='grid';
+        branches[city].forEach(b=>{
+          const card=document.createElement('article');
+          card.className='card';
+          card.innerHTML=`<div class="address">${b.title}</div>
+          <div class="meta">${b.phone?`<div class=\"chip\">Phone: ${b.phone}</div>`:''}${b.newOutlet?'<div class=\"chip\" style=\"color:var(--accent);border-color:var(--accent)\">✨ New Outlet</div>':''}</div>
+          <div class="actions">${b.phone?`<a class=\"phone\" href=\"tel:${b.phone}\">📞 ${b.phone}</a>`:''}<a class=\"map\" href=\"${mkMapUrl(city + ' ' + b.title)}\" target=\"_blank\">🗺️ View on map</a></div>`;
+          grid.appendChild(card);
+        });
+        sec.appendChild(grid);
+        area.appendChild(sec);
+      }
+    }
+
+    render();
+  </script>
+</body>
+</html>
