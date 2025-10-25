@@ -40,7 +40,6 @@
 
     .city-section{margin-top:32px}
     .city-title{font-size:20px;font-weight:700;color:var(--accent);margin:10px 0 16px;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:6px;display:flex;align-items:center;gap:10px}
-    .badge-new{font-size:11px;padding:4px 8px;border-radius:6px;background:var(--accent);color:#4b2e2e;font-weight:700}
 
     .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
     @media (max-width:880px){.grid{grid-template-columns:1fr}}
@@ -96,11 +95,11 @@
       'AHMEDABAD':[ 
         {title:'3 Darwaza, Near Khajuri Masjid, Dhalgarwad, Ahmedabad, Gujarat 380001'}],
       'HYDERABAD':[ 
-        {title:'20-4-231, Mahboob Chowk, Khilwat, Hyderabad, Telangana 500002', newOutlet:true}],
+        {title:'20-4-231, Mahboob Chowk, Khilwat, Hyderabad, Telangana 500002'}],
       'AURANGABAD':[ 
-        {title:'Shop No. 2, Hafeez Tower, Opposite Masjid E Kalaha Shahgunj, Near Clock Tower, Shahgunj, Chhatrapati Sambhajinagar (Aurangabad), Maharashtra 431001', newOutlet:true}],
+        {title:'Shop No. 2, Hafeez Tower, Opposite Masjid E Kalaha Shahgunj, Near Clock Tower, Shahgunj, Chhatrapati Sambhajinagar (Aurangabad), Maharashtra 431001'}],
       'LUCKNOW':[ 
-        {title:'Shop No. 178, Victoria Street, Opposite Shia Girls College, Bajaja Nakhas Chowk, Lucknow, Uttar Pradesh 226003', newOutlet:true}]
+        {title:'Shop No. 178, Victoria Street, Opposite Shia Girls College, Bajaja Nakhas Chowk, Lucknow, Uttar Pradesh 226003'}]
     };
 
     function mkMapUrl(addr){
@@ -115,8 +114,7 @@
         sec.className='city-section';
         const h = document.createElement('h2');
         h.className='city-title';
-        const firstOutlet = branches[city].find(b=>b.newOutlet);
-        h.innerHTML = city + (firstOutlet? ' <span class="badge-new">NEW OUTLET</span>':'');
+        h.textContent = city;
         sec.appendChild(h);
         const grid = document.createElement('div');
         grid.className='grid';
@@ -124,7 +122,7 @@
           const card=document.createElement('article');
           card.className='card';
           card.innerHTML=`<div class="address">${b.title}</div>
-          <div class="meta">${b.phone?`<div class=\"chip\">Phone: ${b.phone}</div>`:''}${b.newOutlet?'<div class=\"chip\" style=\"color:var(--accent);border-color:var(--accent)\">✨ New Outlet</div>':''}</div>
+          <div class="meta">${b.phone?`<div class=\"chip\">Phone: ${b.phone}</div>`:''}</div>
           <div class="actions">${b.phone?`<a class=\"phone\" href=\"tel:${b.phone}\">📞 ${b.phone}</a>`:''}<a class=\"map\" href=\"${mkMapUrl(city + ' ' + b.title)}\" target=\"_blank\">🗺️ View on map</a></div>`;
           grid.appendChild(card);
         });
@@ -137,3 +135,4 @@
   </script>
 </body>
 </html>
+
