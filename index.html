@@ -63,7 +63,7 @@
       <img src="https://cdn.shopify.com/s/files/1/0617/3255/2841/files/bm_logo.png?v=1757573120" alt="BM Logo" style="height:64px;width:auto;border-radius:50%;background:#fff;padding:6px;box-shadow:0 0 12px rgba(255,210,138,0.5)">
       <div class="brand">
         <h1>BEINGMUSLIMS — The Hijab Shoppe</h1>
-        <p>Mumbai • Delhi • Surat • Pune • Hyderabad • Ahmedabad • Aurangabad • Lucknow • Belgaum</p>
+        <p>Mumbai • Delhi • Surat • Pune • Hyderabad • Ahmedabad • Aurangabad • Lucknow • Belgaum • Bhopal</p>
       </div>
     </header>
 
@@ -93,7 +93,10 @@
       'AURANGABAD':[ 
         {title:'Shop No. 2, Hafeez Tower, Opposite Masjid E Kalaha Shahgunj, Near Clock Tower, Shahgunj, Chhatrapati Sambhajinagar (Aurangabad), Maharashtra 431001', phone:'+919404894048'}],
       'LUCKNOW':[ 
-        {title:'Shop No. 178, Victoria Street, Opposite Shia Girls College, Bajaja Nakhas Chowk, Lucknow, Uttar Pradesh 226003', phone:'+917080553240'}]
+        {title:'Shop No. 178, Victoria Street, Opposite Shia Girls College, Bajaja Nakhas Chowk, Lucknow, Uttar Pradesh 226003', phone:'+917080553240'}],
+      'BHOPAL':[
+        {title:'Coming Soon'}
+      ]
     };
 
     function mkMapUrl(addr){
@@ -117,7 +120,7 @@
           card.className='card';
           card.innerHTML=`<div class="address">${b.title}</div>
           <div class="meta">${b.phone?`<div class=\"chip\">Phone: ${b.phone}</div>`:''}</div>
-          <div class="actions">${b.phone?`<a class=\"phone\" href=\"tel:${b.phone}\">📞 ${b.phone}</a>`:''}<a class=\"map\" href=\"${mkMapUrl(city + ' ' + b.title)}\" target=\"_blank\">🗺️ View on map</a></div>`;
+          <div class="actions">${b.phone?`<a class=\"phone\" href=\"tel:${b.phone}\">📞 ${b.phone}</a>`:''}${b.title!=='Coming Soon'?`<a class=\"map\" href=\"${mkMapUrl(city + ' ' + b.title)}\" target=\"_blank\">🗺️ View on map</a>`:''}</div>`;
           grid.appendChild(card);
         });
         sec.appendChild(grid);
