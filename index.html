@@ -78,7 +78,8 @@
         {title:'Ground Floor, Habib House, 97 Memomwada Street, Behind Noor Hospital, Mumbai, Maharashtra', phone:'+919799796993'}],
       'DELHI':[ 
         {title:'Shop Number 3941, Urdu Bazar Road, Jama Masjid, Old Delhi, Delhi, 110006', phone:'+919625545424'},
-        {title:'Shop no-161/22, Main Market Joga Bai, Makkah Palace Hotel, Batla House, Okhla, New Delhi -110025', phone:'+919891269822'}],
+        {title:'Shop no-161/22, Main Market Joga Bai, Makkah Palace Hotel, Batla House, Okhla, New Delhi -110025', phone:'+919891269822'},
+        {title:'THE HIJAB HOUSE | MODEST FOREVER\nAddress: Shop No.E-334/5 Batla House Chowk, Okhla, Delhi, 110025', phone:'+918375903870', map:'https://shorturl.at/GffSr'}],
       'SURAT':[ 
         {title:'Salabatpura Mumnawad, Near Badi Masjid, Opp. Dusra Taziya, Surat, Gujarat 395003', phone:'+917600267402'},
         {title:'Chowk Bazar, Kamal Gali, Main Road, Opp. Jama Masjid, Surat, Gujarat 395003', phone:'+917600267402'}],
@@ -94,13 +95,12 @@
         {title:'Shop No. 2, Hafeez Tower, Opposite Masjid E Kalaha Shahgunj, Near Clock Tower, Shahgunj, Chhatrapati Sambhajinagar (Aurangabad), Maharashtra 431001', phone:'+919404894048'}],
       'LUCKNOW':[ 
         {title:'Shop No. 178, Victoria Street, Opposite Shia Girls College, Bajaja Nakhas Chowk, Lucknow, Uttar Pradesh 226003', phone:'+917080553240'}],
-      'BHOPAL':[
-        {title:'Coming Soon'}
-      ]
+      'BHOPAL':[ 
+        {title:'BEING MUSLIMS | MODEST FOREVER\nGalaxy Plaza, New Motia Park, Sultania Rd,\nIbrahimpura, Bhopal, Madhya Pradesh 462001', phone:'+918839478744', map:'https://shorturl.at/MQI0Z'}]
     };
 
-    function mkMapUrl(addr){
-      return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(addr);
+    function mkMapUrl(addr, custom){
+      return custom || ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(addr));
     }
 
     function render(){
@@ -118,9 +118,10 @@
         branches[city].forEach(b=>{
           const card=document.createElement('article');
           card.className='card';
+          const mapUrl = mkMapUrl(city + ' ' + b.title, b.map);
           card.innerHTML=`<div class="address">${b.title}</div>
           <div class="meta">${b.phone?`<div class=\"chip\">Phone: ${b.phone}</div>`:''}</div>
-          <div class="actions">${b.phone?`<a class=\"phone\" href=\"tel:${b.phone}\">📞 ${b.phone}</a>`:''}${b.title!=='Coming Soon'?`<a class=\"map\" href=\"${mkMapUrl(city + ' ' + b.title)}\" target=\"_blank\">🗺️ View on map</a>`:''}</div>`;
+          <div class="actions">${b.phone?`<a class=\"phone\" href=\"tel:${b.phone}\">📞 ${b.phone}</a>`:''}${b.title!=='Coming Soon'?`<a class=\"map\" href=\"${mapUrl}\" target=\"_blank\">🗺️ View on map</a>`:''}</div>`;
           grid.appendChild(card);
         });
         sec.appendChild(grid);
