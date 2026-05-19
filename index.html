@@ -2,283 +2,448 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="theme-color" content="#080705"/>
 <title>BEINGMUSLIMS — Store Branches</title>
-
-<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #0d0b09;
-  --card: rgba(255, 215, 130, 0.05);
-  --accent: #f2c572;
-  --gold-gradient: linear-gradient(90deg, #f9e7b0, #e3b356, #f9e7b0);
-  --text-muted: #c1b394;
-  color-scheme: dark;
+:root{
+  --g0:#080705;--g2:#120f0b;
+  --gold:#c99b36;--gold-lt:#e8c56a;--gold-dim:#f9e7b0;
+  --gold-pale:rgba(201,155,54,0.12);
+  --border:rgba(201,155,54,0.16);--border-h:rgba(201,155,54,0.45);
+  --txt:#ede4cf;--txt2:#9e8f72;--txt3:#5a4e3a;
+  --rr:20px;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: "Poppins", sans-serif;
-  background: var(--bg);
-  color: #fff;
-  background-image: 
-    url('https://www.transparenttextures.com/patterns/arabesque.png'),
-    radial-gradient(circle at 20% 30%, rgba(255,215,130,0.07) 0%, transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(255,215,130,0.07) 0%, transparent 40%);
-  background-blend-mode: overlay;
-  background-size: 400px, cover, cover;
-  overflow-x: hidden;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
+body{
+  font-family:"DM Sans",sans-serif;
+  background:var(--g0);
+  color:var(--txt);
+  min-height:100vh;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
 }
-.container {
-  max-width: 1100px;
-  margin: 50px auto;
-  padding: 30px 20px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255,215,130,0.15);
-  border-radius: 20px;
-  box-shadow: 0 0 30px rgba(255,215,130,0.05);
-  backdrop-filter: blur(10px);
+
+/* BG LAYERS */
+.bg-grid{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(201,155,54,0.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(201,155,54,0.025) 1px,transparent 1px);
+  background-size:48px 48px;
 }
-header {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-  text-align: center;
+.bg-g1{position:fixed;z-index:0;pointer-events:none;border-radius:50%;filter:blur(90px);
+  width:min(600px,130vw);height:min(600px,130vw);
+  top:-20%;left:-20%;
+  background:radial-gradient(circle,rgba(201,155,54,0.1) 0%,transparent 65%);}
+.bg-g2{position:fixed;z-index:0;pointer-events:none;border-radius:50%;filter:blur(80px);
+  width:min(500px,110vw);height:min(500px,110vw);
+  bottom:-15%;right:-15%;
+  background:radial-gradient(circle,rgba(201,155,54,0.07) 0%,transparent 65%);}
+
+/* SCROLL BAR */
+.sp{position:fixed;top:0;left:0;height:2px;width:0%;z-index:999;
+  background:linear-gradient(90deg,var(--gold),var(--gold-lt));
+  box-shadow:0 0 10px rgba(201,155,54,0.5);transition:width 0.08s linear;}
+
+/* WRAPPER */
+.wrap{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:0 16px;}
+@media(min-width:600px){.wrap{padding:0 24px;}}
+@media(min-width:900px){.wrap{padding:0 40px;}}
+
+/* ════ HERO ════ */
+.hero{
+  position:relative;text-align:center;
+  padding:clamp(52px,11vw,100px) 16px clamp(44px,8vw,72px);
+  overflow:hidden;
 }
-header img {
-  height: 80px;
-  width: 80px;
-  border-radius: 50%;
-  background: white;
-  padding: 8px;
-  box-shadow: 0 0 25px rgba(255,215,130,0.4);
+.hero::after{
+  content:"";position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:min(500px,80vw);height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.5;
 }
-.brand h1 {
-  font-family: "Amiri", serif;
-  font-size: 26px;
-  background: var(--gold-gradient);
-  -webkit-background-clip: text;
-  color: transparent;
-  font-weight: 700;
-  letter-spacing: 1px;
+
+/* ── TRANSPARENT LOGO ── */
+.logo-wrap{
+  position:relative;display:inline-flex;
+  align-items:center;justify-content:center;
+  margin-bottom:clamp(28px,7vw,44px);
 }
-.brand p {
-  font-size: 14px;
-  color: var(--text-muted);
-  margin-top: 4px;
+/* soft ambient bloom behind logo */
+.logo-bloom{
+  position:absolute;inset:-60%;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,155,54,0.2) 0%,rgba(201,155,54,0.06) 40%,transparent 70%);
+  animation:bloom 5s ease-in-out infinite;
+  pointer-events:none;
 }
-.city-section {
-  margin-top: 40px;
+/* inner spinning ring */
+.logo-ring-a{
+  position:absolute;
+  inset:clamp(-14px,-3vw,-10px);
+  border-radius:50%;
+  border:1px solid rgba(201,155,54,0.3);
+  animation:spin-a 16s linear infinite;
 }
-.city-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: 700;
-  margin-bottom: 18px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid rgba(255,215,130,0.25);
+/* outer dashed ring */
+.logo-ring-b{
+  position:absolute;
+  inset:clamp(-28px,-5vw,-20px);
+  border-radius:50%;
+  border:1px dashed rgba(201,155,54,0.14);
+  animation:spin-a 28s linear infinite reverse;
 }
-.city-title .en {
-  font-family: "Poppins", sans-serif;
-  font-size: 22px;
-  background: var(--gold-gradient);
-  -webkit-background-clip: text;
-  color: transparent;
+/* gold accent dots on outer ring */
+.logo-ring-b::before,.logo-ring-b::after{
+  content:"";position:absolute;width:6px;height:6px;border-radius:50%;
+  background:var(--gold);top:50%;left:-3px;transform:translateY(-50%);
+  box-shadow:0 0 10px var(--gold),0 0 20px rgba(201,155,54,0.5);
 }
-.city-title .ur {
-  font-family: "Amiri", serif;
-  font-size: 22px;
-  background: var(--gold-gradient);
-  -webkit-background-clip: text;
-  color: transparent;
-  direction: rtl;
+.logo-ring-b::after{left:auto;right:-3px;}
+
+@keyframes bloom{0%,100%{opacity:.7;transform:scale(1);}50%{opacity:1;transform:scale(1.1);}}
+@keyframes spin-a{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+.logo-img{
+  position:relative;z-index:2;
+  width:clamp(90px,22vw,130px);
+  height:clamp(90px,22vw,130px);
+  object-fit:contain;display:block;
+  /* transparent bg — glows directly on dark */
+  filter:
+    drop-shadow(0 0 16px rgba(201,155,54,0.55))
+    drop-shadow(0 0 36px rgba(201,155,54,0.28))
+    drop-shadow(0 0 70px rgba(201,155,54,0.12));
+  animation:float 7s ease-in-out infinite;
 }
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-  gap: 20px;
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
+
+/* HERO TEXT */
+.eyebrow{
+  font-size:clamp(9px,2.5vw,11px);font-weight:500;
+  letter-spacing:4px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:clamp(10px,3vw,16px);opacity:.9;
 }
-.card {
-  position: relative;
-  background: var(--card);
-  border: 1px solid rgba(255,215,130,0.15);
-  border-radius: 16px;
-  padding: 18px;
-  transition: 0.4s ease;
-  box-shadow: 0 0 15px rgba(0,0,0,0.4);
-  overflow: hidden;
+.hero-title{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(28px,9vw,72px);
+  font-weight:700;line-height:1.05;letter-spacing:-0.5px;
+  background:linear-gradient(150deg,var(--gold-dim) 0%,var(--gold-lt) 45%,var(--gold) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:4px;
 }
-.card::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 3px;
-  background: var(--gold-gradient);
-  opacity: 0.6;
+.hero-sub{
+  font-family:"Cormorant Garamond",serif;
+  font-size:clamp(15px,4.5vw,22px);font-weight:300;font-style:italic;
+  color:var(--txt2);margin-bottom:clamp(22px,5vw,34px);letter-spacing:.4px;
 }
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 25px rgba(255,215,130,0.4);
+
+/* CITY PILLS */
+.city-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;padding:0 4px;}
+.c-pill{
+  font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--txt3);padding:5px 12px;
+  border:1px solid rgba(201,155,54,0.1);border-radius:100px;
+  text-decoration:none;white-space:nowrap;
+  transition:color .25s,border-color .25s,background .25s;
+  min-height:32px;display:inline-flex;align-items:center;
 }
-.address {
-  font-size: 14px;
-  line-height: 1.7;
-  color: #f7f3e8;
-  white-space: pre-line;
+.c-pill:hover,.c-pill:focus-visible{
+  color:var(--gold-lt);border-color:rgba(201,155,54,0.35);background:rgba(201,155,54,0.07);
 }
-.meta {
-  margin-top: 8px;
+
+/* ════ STICKY NAV ════ */
+.city-nav{
+  position:sticky;top:0;z-index:90;
+  padding:8px 0;
+  background:linear-gradient(to bottom,rgba(8,7,5,0.96),rgba(8,7,5,0.88));
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(201,155,54,0.07);
 }
-.chip {
-  display: inline-block;
-  padding: 6px 10px;
-  border-radius: 10px;
-  background: rgba(255,215,130,0.08);
-  border: 1px solid rgba(255,215,130,0.25);
-  font-size: 13px;
-  color: #f5e2b6;
+.city-nav-inner{
+  display:flex;gap:4px;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  padding:0 16px;
+  scroll-snap-type:x proximity;
 }
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 10px;
+.city-nav-inner::-webkit-scrollbar{display:none;}
+@media(min-width:640px){.city-nav-inner{padding:0 24px;justify-content:center;flex-wrap:wrap;}}
+@media(min-width:900px){.city-nav-inner{padding:0 40px;}}
+
+.nav-btn{
+  flex-shrink:0;scroll-snap-align:start;
+  font-family:"DM Sans",sans-serif;
+  font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;
+  color:var(--txt3);text-decoration:none;
+  padding:7px 14px;border-radius:100px;border:1px solid transparent;
+  transition:all .22s;white-space:nowrap;
+  min-height:38px;display:inline-flex;align-items:center;
+  cursor:pointer;
 }
-a.phone, a.map {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  font-size: 13px;
-  padding: 8px 12px;
-  border-radius: 8px;
-  transition: 0.3s;
+.nav-btn:hover,.nav-btn.active{
+  color:var(--gold-lt);border-color:rgba(201,155,54,0.3);background:rgba(201,155,54,0.09);
 }
-a.phone {
-  color: #fff;
-  border: 1px solid rgba(255,215,130,0.2);
-  background: rgba(255,215,130,0.08);
+
+/* ════ SECTION HEADER ════ */
+.sec-header{
+  display:flex;align-items:center;gap:10px;
+  margin:clamp(40px,9vw,68px) 0 clamp(16px,4vw,26px);
+  overflow:hidden;
 }
-a.phone:hover {
-  background: rgba(255,215,130,0.2);
+.sec-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(201,155,54,0.18),transparent);min-width:0;}
+.sec-line.r{background:linear-gradient(270deg,rgba(201,155,54,0.18),transparent);}
+.sec-diamond{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);flex-shrink:0;}
+.sec-city-en{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(19px,5vw,30px);font-weight:600;color:var(--txt);
+  white-space:nowrap;flex-shrink:0;
 }
-a.map {
-  color: var(--accent);
-  border: 1px dashed rgba(255,215,130,0.3);
+.sec-city-ur{
+  font-size:clamp(17px,4vw,24px);color:var(--gold);direction:rtl;
+  opacity:.8;white-space:nowrap;flex-shrink:0;
 }
-a.map:hover {
-  color: #fff;
-  border-color: var(--accent);
-  background: rgba(255,215,130,0.15);
+
+/* ════ BRANCH GRID ════ */
+.b-grid{
+  display:grid;grid-template-columns:1fr;
+  gap:12px;margin-bottom:4px;
 }
-footer {
-  text-align: center;
-  margin-top: 50px;
-  color: var(--text-muted);
-  font-size: 13px;
-  border-top: 1px solid rgba(255,215,130,0.15);
-  padding-top: 15px;
+@media(min-width:500px){.b-grid{grid-template-columns:repeat(2,1fr);gap:14px;}}
+@media(min-width:860px){.b-grid{grid-template-columns:repeat(3,1fr);gap:18px;}}
+
+/* ════ BRANCH CARD ════ */
+.b-card{
+  position:relative;
+  background:var(--g2);
+  border:1px solid var(--border);
+  border-radius:var(--rr);
+  padding:clamp(18px,4.5vw,26px) clamp(16px,4vw,24px) clamp(16px,3.5vw,20px);
+  overflow:hidden;
+  transition:border-color .3s,box-shadow .3s,transform .3s cubic-bezier(.22,.68,0,1.15);
+  animation:fade-up .45s ease both;
 }
+@keyframes fade-up{from{opacity:0;transform:translateY(13px);}to{opacity:1;transform:translateY(0);}}
+.b-card::before{
+  content:"";position:absolute;top:0;left:12%;right:12%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.4;
+}
+.b-card::after{
+  content:"";position:absolute;inset:0;border-radius:var(--rr);
+  background:radial-gradient(ellipse at 50% -5%,rgba(201,155,54,0.055) 0%,transparent 55%);
+  pointer-events:none;
+}
+@media(hover:hover){
+  .b-card:hover{
+    border-color:var(--border-h);
+    box-shadow:0 10px 38px rgba(0,0,0,.55),0 0 22px rgba(201,155,54,0.1);
+    transform:translateY(-4px);
+  }
+}
+@media(hover:none){.b-card:active{border-color:rgba(201,155,54,0.35);background:rgba(201,155,54,0.03);}}
+
+.b-num{
+  position:absolute;top:15px;right:16px;
+  font-size:10px;font-weight:500;letter-spacing:2px;color:var(--txt3);
+}
+.b-addr{
+  font-size:clamp(13px,3.4vw,14px);font-weight:300;line-height:1.78;
+  color:var(--txt);white-space:pre-line;
+  padding-right:38px;margin-bottom:clamp(14px,3.5vw,18px);
+}
+.b-sep{height:1px;background:rgba(201,155,54,0.1);margin-bottom:clamp(12px,3vw,16px);}
+.b-phone{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:clamp(12px,3.2vw,13px);font-weight:500;
+  color:var(--gold-lt);margin-bottom:clamp(12px,3vw,16px);letter-spacing:.3px;
+}
+.b-phone svg{width:13px;height:13px;flex-shrink:0;opacity:.75;}
+
+/* ACTIONS */
+.b-actions{display:flex;gap:8px;}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  text-decoration:none;
+  font-family:"DM Sans",sans-serif;
+  font-size:clamp(11px,2.8vw,12px);font-weight:500;letter-spacing:.4px;
+  padding:0 clamp(12px,3.5vw,16px);
+  height:44px;/* tall touch target */
+  border-radius:10px;border:1px solid;
+  transition:all .22s;flex:1;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn svg{width:13px;height:13px;flex-shrink:0;}
+.btn-call{color:#fff;border-color:rgba(201,155,54,0.25);background:rgba(201,155,54,0.09);}
+.btn-call:hover,.btn-call:active{background:rgba(201,155,54,0.2);border-color:rgba(201,155,54,0.5);}
+.btn-map{color:var(--txt2);border-color:rgba(255,255,255,0.07);background:transparent;}
+.btn-map:hover,.btn-map:active{color:var(--gold-lt);border-color:rgba(201,155,54,0.28);background:rgba(201,155,54,0.05);}
+
+/* ════ FOOTER ════ */
+footer{
+  position:relative;z-index:1;text-align:center;
+  margin-top:clamp(64px,14vw,100px);
+  padding:clamp(28px,7vw,44px) 16px clamp(28px,8vw,40px);
+}
+footer::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:min(340px,70vw);height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.35;
+}
+.ft-orn{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px;}
+.ft-orn-l{width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--gold));opacity:.6;}
+.ft-orn-l:last-child{background:linear-gradient(270deg,transparent,var(--gold));}
+.ft-orn-d{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);opacity:.7;}
+.ft-copy{font-size:12px;color:var(--txt3);letter-spacing:.4px;margin-bottom:8px;}
+.ft-design{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--txt3);}
+.ft-design strong{color:var(--gold);font-weight:500;}
 </style>
 </head>
 <body>
 
-<div class="container">
-  <header>
-    <img src="https://cdn.shopify.com/s/files/1/0617/3255/2841/files/bm_logo.png?v=1757573120" alt="BM Logo">
-    <div class="brand">
-      <h1>BEINGMUSLIMS — The Hijab Shoppe</h1>
-      <p>Mumbai • Delhi • Surat • Hyderabad • Ahmedabad • Aurangabad • Lucknow • Belgaum • Bhopal</p>
-    </div>
-  </header>
+<div class="sp" id="sp"></div>
+<div class="bg-grid"></div>
+<div class="bg-g1"></div>
+<div class="bg-g2"></div>
 
-  <div id="branchesArea"></div>
+<div class="wrap">
+<!-- HERO -->
+<header class="hero">
+  <div class="logo-wrap">
+    <div class="logo-bloom"></div>
+    <div class="logo-ring-a"></div>
+    <div class="logo-ring-b"></div>
+    <img class="logo-img"
+         src="https://cdn.shopify.com/s/files/1/0852/4565/7363/files/bm_logo.svg?v=1779184344"
+         alt="BeingMuslims Logo" width="130" height="130">
+  </div>
+  <p class="eyebrow">Established with Love &amp; Faith</p>
+  <h1 class="hero-title">BEINGMUSLIMS</h1>
+  <p class="hero-sub">The Hijab Shoppe — Modest Forever</p>
+  <div class="city-pills" id="cityPills"></div>
+</header>
+</div>
+
+<!-- STICKY NAV — full bleed -->
+<nav class="city-nav" aria-label="Jump to city">
+  <div class="city-nav-inner" id="cityNav"></div>
+</nav>
+
+<div class="wrap">
+<main id="branchesArea"></main>
 </div>
 
 <footer>
-  © 2025 BEINGMUSLIMS — All Rights Reserved | Designed with ✨ by BEINGMUSLIMS
+  <div class="ft-orn">
+    <div class="ft-orn-l"></div><div class="ft-orn-d"></div><div class="ft-orn-l"></div>
+  </div>
+  <p class="ft-copy">© 2025 BEINGMUSLIMS — All Rights Reserved</p>
+  <p class="ft-design">Designed with elegance by <strong>Wizualz Studio</strong></p>
 </footer>
 
 <script>
-const urduNames = {
-  'MUMBAI':'ممبئی',
-  'DELHI':'دہلی',
-  'SURAT':'سورت',
-  'BELGAUM':'بلگاوں',
-  'AHMEDABAD':'احمد آباد',
-  'HYDERABAD':'حیدرآباد',
-  'AURANGABAD':'اورنگ آباد',
-  'LUCKNOW':'لکھنؤ',
-  'BHOPAL':'بھوپال'
+const urdu={MUMBAI:'ممبئی',DELHI:'دہلی',SURAT:'سورت',BELGAUM:'بلگاوں',AHMEDABAD:'احمد آباد',HYDERABAD:'حیدرآباد',AURANGABAD:'اورنگ آباد',LUCKNOW:'لکھنؤ',BHOPAL:'بھوپال'};
+
+const data={
+  MUMBAI:[
+    {a:'Ground Floor, 30, Next to Al Sadiq ENT Hospital, Opposite Chuna Bhatti Masjid, Mumbai, Maharashtra',p:'+91 8928805501'},
+    {a:'1/14, Ground Floor, Development Bank Building, Mata Ramabai Ambedkar Marg, Mumbai, Maharashtra',p:'+91 8433991785'},
+    {a:'Ground Floor, Habib House, 97 Memomwada Street, Behind Noor Hospital, Mumbai, Maharashtra',p:'+91 9799796993'}
+  ],
+  DELHI:[
+    {a:'Shop Number 3941, Urdu Bazar Road, Jama Masjid, Old Delhi, Delhi, 110006',p:'+91 9625545424'},
+    {a:'Shop no-161/22, Main Market Joga Bai, Makkah Palace Hotel, Batla House, Okhla, New Delhi -110025',p:'+91 9891269822'},
+    {a:'THE HIJAB HOUSE | MODEST FOREVER\nShop No.E-334/5 Batla House Chowk, Okhla, Delhi, 110025',p:'+91 8375903870',m:'https://shorturl.at/GffSr'}
+  ],
+  SURAT:[
+    {a:'Salabatpura Mumnawad, Near Badi Masjid, Opp. Dusra Taziya, Surat, Gujarat 395003',p:'+91 7600267402'},
+    {a:'Chowk Bazar, Kamal Gali, Main Road, Opp. Jama Masjid, Surat, Gujarat 395003',p:'+91 7600267402'}
+  ],
+  BELGAUM:[{a:'Shop No. Hyderabad Collection, 3306, Bhendi Bazar, Raviwar Peth, Belagavi, Karnataka 590001',p:'+91 9591231375'}],
+  AHMEDABAD:[{a:'3 Darwaza, Near Khajuri Masjid, Dhalgarwad, Ahmedabad, Gujarat 380001',p:'+91 9023987386'}],
+  HYDERABAD:[{a:'20-4-231, Mahboob Chowk, Khilwat, Hyderabad, Telangana 500002',p:'+91 9310168807'}],
+  AURANGABAD:[{a:'Shop No. 2, Hafeez Tower, Opposite Masjid E Kalaha Shahgunj, Near Clock Tower, Shahgunj, Chhatrapati Sambhajinagar (Aurangabad), Maharashtra 431001',p:'+91 9404894048'}],
+  LUCKNOW:[{a:'Shop No. 178, Victoria Street, Opposite Shia Girls College, Bajaja Nakhas Chowk, Lucknow, Uttar Pradesh 226003',p:'+91 7080553240'}],
+  BHOPAL:[{a:'BEING MUSLIMS | MODEST FOREVER\nGalaxy Plaza, New Motia Park, Sultania Rd,\nIbrahimpura, Bhopal, Madhya Pradesh 462001',p:'+91 9589945073',m:'https://shorturl.at/MQI0Z'}]
 };
 
-const branches = {
-  'MUMBAI':[ 
-    {title:'Ground Floor, 30, Next to Al Sadiq ENT Hospital, Opposite Chuna Bhatti Masjid, Mumbai, Maharashtra', phone:'+91 8928805501'},
-    {title:'1/14, Ground Floor, Development Bank Building, Mata Ramabai Ambedkar Marg, Mumbai, Maharashtra', phone:'+91 8433991785'},
-    {title:'Ground Floor, Habib House, 97 Memomwada Street, Behind Noor Hospital, Mumbai, Maharashtra', phone:'+91 9799796993'}],
-  'DELHI':[ 
-    {title:'Shop Number 3941, Urdu Bazar Road, Jama Masjid, Old Delhi, Delhi, 110006', phone:'+91 9625545424'},
-    {title:'Shop no-161/22, Main Market Joga Bai, Makkah Palace Hotel, Batla House, Okhla, New Delhi -110025', phone:'+91 9891269822'},
-    {title:'THE HIJAB HOUSE | MODEST FOREVER\nAddress: Shop No.E-334/5 Batla House Chowk, Okhla, Delhi, 110025', phone:'+91 8375903870', map:'https://shorturl.at/GffSr'}],
-  'SURAT':[ 
-    {title:'Salabatpura Mumnawad, Near Badi Masjid, Opp. Dusra Taziya, Surat, Gujarat 395003', phone:'+91 7600267402'},
-    {title:'Chowk Bazar, Kamal Gali, Main Road, Opp. Jama Masjid, Surat, Gujarat 395003', phone:'+91 7600267402'}],
-  'BELGAUM':[ 
-    {title:'Shop No. Hyderabad Collection, 3306, Bhendi Bazar, Raviwar Peth, Belagavi, Karnataka 590001', phone:'+91 9591231375'}],
-  'AHMEDABAD':[ 
-    {title:'3 Darwaza, Near Khajuri Masjid, Dhalgarwad, Ahmedabad, Gujarat 380001', phone:'+91 9023987386'}],
-  'HYDERABAD':[ 
-    {title:'20-4-231, Mahboob Chowk, Khilwat, Hyderabad, Telangana 500002', phone:'+91 9310168807'}],
-  'AURANGABAD':[ 
-    {title:'Shop No. 2, Hafeez Tower, Opposite Masjid E Kalaha Shahgunj, Near Clock Tower, Shahgunj, Chhatrapati Sambhajinagar (Aurangabad), Maharashtra 431001', phone:'+91 9404894048'}],
-  'LUCKNOW':[ 
-    {title:'Shop No. 178, Victoria Street, Opposite Shia Girls College, Bajaja Nakhas Chowk, Lucknow, Uttar Pradesh 226003', phone:'+91 7080553240'}],
-  'BHOPAL':[ 
-    {title:'BEING MUSLIMS | MODEST FOREVER\nGalaxy Plaza, New Motia Park, Sultania Rd,\nIbrahimpura, Bhopal, Madhya Pradesh 462001', phone:'+91 9589945073', map:'https://shorturl.at/MQI0Z'}]
-};
+const Ph=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>`;
+const Mp=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>`;
 
-function mkMapUrl(addr, custom){
-  return custom || ('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(addr));
-}
+const pills=document.getElementById('cityPills');
+const nav=document.getElementById('cityNav');
+const area=document.getElementById('branchesArea');
 
-function render(){
-  const area=document.getElementById('branchesArea');
-  area.innerHTML='';
-  for(const city in branches){
-    const sec=document.createElement('section');
-    sec.className='city-section';
-    const h=document.createElement('div');
-    h.className='city-title';
-    h.innerHTML = `<span class="en">${city}</span><span class="ur">${urduNames[city]}</span>`;
-    sec.appendChild(h);
-    const grid=document.createElement('div');
-    grid.className='grid';
-    branches[city].forEach(b=>{
-      const card=document.createElement('article');
-      card.className='card';
-      const mapUrl=mkMapUrl(city+' '+b.title,b.map);
-      card.innerHTML=`
-        <div class="address">${b.title}</div>
-        <div class="meta">${b.phone?`<div class='chip'>📞 ${b.phone}</div>`:''}</div>
-        <div class="actions">
-          ${b.phone?`<a class='phone' href='tel:${b.phone}'>Call Store</a>`:''}
-          ${b.title!=='Coming Soon'?`<a class='map' href='${mapUrl}' target='_blank'>🗺️ View on Map</a>`:''}
-        </div>`;
-      grid.appendChild(card);
+Object.keys(data).forEach(city=>{
+  const p=document.createElement('a');
+  p.className='c-pill';p.href='#c-'+city;p.textContent=city;
+  pills.appendChild(p);
+
+  const nb=document.createElement('a');
+  nb.className='nav-btn';nb.href='#c-'+city;nb.textContent=city;
+  nav.appendChild(nb);
+});
+
+Object.entries(data).forEach(([city,list],ci)=>{
+  const sec=document.createElement('section');
+  sec.id='c-'+city;
+
+  const hdr=document.createElement('div');
+  hdr.className='sec-header';
+  hdr.innerHTML=`<div class="sec-line"></div><div class="sec-city-en">${city}</div><div class="sec-diamond"></div><div class="sec-city-ur">${urdu[city]}</div><div class="sec-line r"></div>`;
+  sec.appendChild(hdr);
+
+  const grid=document.createElement('div');
+  grid.className='b-grid';
+
+  list.forEach((b,i)=>{
+    const card=document.createElement('article');
+    card.className='b-card';
+    card.style.animationDelay=(i*70)+'ms';
+    const mapUrl=b.m||('https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(city+' '+b.a));
+    const idx=`${String(ci+1).padStart(2,'0')}·${String(i+1).padStart(2,'0')}`;
+    card.innerHTML=`
+      <span class="b-num">${idx}</span>
+      <div class="b-addr">${b.a}</div>
+      <div class="b-sep"></div>
+      ${b.p?`<div class="b-phone">${Ph}${b.p}</div>`:''}
+      <div class="b-actions">
+        ${b.p?`<a class="btn btn-call" href="tel:${b.p}">${Ph} Call</a>`:''}
+        <a class="btn btn-map" href="${mapUrl}" target="_blank" rel="noopener">${Mp} Map</a>
+      </div>`;
+    grid.appendChild(card);
+  });
+
+  sec.appendChild(grid);
+  area.appendChild(sec);
+});
+
+// scroll progress
+window.addEventListener('scroll',()=>{
+  const t=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('sp').style.width=(t>0?window.scrollY/t*100:0)+'%';
+},{passive:true});
+
+// active nav on scroll
+const secs=[...document.querySelectorAll('section[id^="c-"]')];
+const navBtns=[...document.querySelectorAll('.nav-btn')];
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const id=e.target.id;
+        navBtns.forEach(b=>{
+          const on=b.getAttribute('href')==='#'+id;
+          b.classList.toggle('active',on);
+          if(on) b.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});
+        });
+      }
     });
-    sec.appendChild(grid);
-    area.appendChild(sec);
-  }
+  },{threshold:0.2,rootMargin:'-60px 0px -40% 0px'});
+  secs.forEach(s=>io.observe(s));
 }
-render();
 </script>
-
 </body>
 </html>
